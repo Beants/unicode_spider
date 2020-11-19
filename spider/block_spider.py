@@ -8,6 +8,9 @@ from spider.char_spider import Char
 
 
 class BlockSpider:
+    """
+    针对 https://www.fuhaoku.net/  中 block 的爬虫
+    """
     def __init__(self, url):
         self.url = url
         self.char_list = []
@@ -16,6 +19,10 @@ class BlockSpider:
         self.save()
 
     def get_char_list(self):
+        """
+        获取该block的所有字符
+        :return:
+        """
         html = requests.get(url=self.url, headers=HEADERS)
         if html.status_code != 200:
             raise ConnectionError(f'{self.url} is not reachable. the status code is {html.status_code}.')
