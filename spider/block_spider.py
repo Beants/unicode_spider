@@ -19,7 +19,6 @@ class BlockSpider:
         html = requests.get(url=self.url, headers=HEADERS)
         if html.status_code != 200:
             raise ConnectionError(f'{self.url} is not reachable. the status code is {html.status_code}.')
-        # print(html.text)
         soup = BeautifulSoup(html.text, features="html.parser")
         char_list = soup.find_all('li', class_='char with-tooltip')
         for index, char in enumerate(char_list):
@@ -27,5 +26,7 @@ class BlockSpider:
             self.char_list.append(Char(URL_BASE + char.a['href']))
 
     def save(self):
-        with open('data/kangxi.json', 'w+', encoding='utf-8') as f:
-            f.write(json.dumps({'data': self.char_list}))
+        with open(f'data/{self.url.replace("https://www.fuhaoku.net/block/", "")}.json', 'w+', encoding='utf-8') as f:
+            result = {i.unicode: v.unicode for i in self.char_list if (v := i.related_char)}
+
+            f.write(json.dumps(result))
