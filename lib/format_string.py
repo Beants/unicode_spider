@@ -1,18 +1,6 @@
-import json
-import os
+from data.unofficial_unicode import UNOFFICIALUNICODE
 
 
-def format_data():
-    file_list = [i for i in os.listdir('data') if i.endswith('.json')]
-    all_data = {}
-    for file_name in file_list:
-        with open(f'data/{file_name}', 'r', encoding='utf-8')as f:
-            all_data.update(json.load(f))
-    all_data = {r"\u" + k.lower(): r"\u" + v.lower() for k, v in all_data.items()}
-
-    with open('data/unofficial_unicode.py', 'w')as f:
-        f.write('import json\n')
-        f.write('''
 def format_string_remove_unofficial_char(text):
     result = ''
     before_is_unofficial = False
@@ -33,11 +21,8 @@ def format_string_remove_unofficial_char(text):
             before_is_unofficial = False
         result += char
         before_unicode = char_unicode
-    return result\n
-''')
-
-        f.write('UNOFFICIALUNICODE = '+json.dumps(all_data, indent=4))
+    return result
 
 
 if __name__ == '__main__':
-    format_data()
+    format_string('⽹网 武汉⻓长江全媒体有限公司')
