@@ -1,5 +1,6 @@
 import json
 
+
 def format_string_remove_unofficial_char(text):
     result = ''
     before_is_unofficial = False
@@ -21,6 +22,7 @@ def format_string_remove_unofficial_char(text):
         result += char
         before_unicode = char_unicode
     return result
+
 
 UNOFFICIALUNICODE = {
     "\\uf900": "\\u8c48",

@@ -1,5 +1,9 @@
 # 项目描述
 * 从 https://www.fuhaoku.net/ 爬取 unicode 数据
+* `data/unofficial_unicode.py`中 包括对字符串进行处理，自动merge非标准字符
+  ```
+  ⽹网易 ⻓长江  --->   网易 长江
+  ```
 * data 中的数据格式为：
     ```json
     {

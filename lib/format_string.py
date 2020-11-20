@@ -25,4 +25,5 @@ def format_string_remove_unofficial_char(text):
 
 
 if __name__ == '__main__':
-    format_string('⽹网 武汉⻓长江全媒体有限公司')
+    r=format_string_remove_unofficial_char('⽹网 武汉⻓长江全媒体有限公司')
+    print(r)
